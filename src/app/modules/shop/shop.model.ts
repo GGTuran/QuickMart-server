@@ -19,6 +19,11 @@ const shopSchema = new Schema<TShop>(
             ref: "User",
             required: true,
         },
+        followers: {
+            type: Number,
+            default: 0,
+        },
+
     },
     {
         timestamps: true,

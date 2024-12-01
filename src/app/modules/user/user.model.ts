@@ -32,6 +32,12 @@ const userSchema = new Schema<TUser>(
       enum: ['admin', 'customer', 'vendor'],
       default: 'customer',
     },
+    followingShops: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Shop", // Reference to the Shop model
+      },
+    ],
   },
   {
     timestamps: true,

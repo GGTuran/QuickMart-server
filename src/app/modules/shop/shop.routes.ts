@@ -30,5 +30,15 @@ router.delete(
     // auth(USER_ROLE.admin, USER_ROLE.user),
     shopControllers.deleteShop);
 
+router.post(
+    "/follow",
+    auth(USER_ROLE.vendor, USER_ROLE.admin, USER_ROLE.customer),
+    shopControllers.followShop)
+
+router.post(
+    "/unfollow",
+    auth(USER_ROLE.vendor, USER_ROLE.admin, USER_ROLE.customer),
+    shopControllers.unFollowShop)
+
 
 export const shopRoutes = router;

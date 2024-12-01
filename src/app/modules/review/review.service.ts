@@ -1,9 +1,31 @@
 // import AppError from "../../errors/AppError";
+import AppError from "../../errors/AppError";
+import { Product } from "../product/product.model";
+import { User } from "../user/user.model";
 import { TReview } from "./review.interface"
 import { Review } from "./review.model"
 
 const createReviewFromDB = async (payload: TReview) => {
+
+    // Check if product exists
+    const product = await Product.findById(payload.productId);
+    if (!product) {
+        throw new AppError(404, "Product not found");
+    }
+
+    // Check if user exists
+    const user = await User.findById(payload.userId);
+    if (!user) {
+        throw new AppError(404, "User not found");
+    }
+
     const result = await Review.create(payload);
+    // Ensuring the reviews array is initialized (if undefined) before pushing
+    if (!product.reviews) {
+        product.reviews = [];
+    }
+    product?.reviews.push(result._id);               // Pushing the newly created review ID
+    await product.save();                            // Saving the product with the updated reviews array
     return result;
 };
 

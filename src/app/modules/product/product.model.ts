@@ -12,7 +12,8 @@ const productSchema = new Schema<TProduct>(
             required: true,
         },
         category: {
-            type: String,
+            type: Schema.Types.ObjectId,
+            ref: "Category",
             required: true,
         },
         image: {
@@ -32,6 +33,10 @@ const productSchema = new Schema<TProduct>(
             ref: "Shop",
             required: true,
         },
+        reviews: [{
+            type: Schema.Types.ObjectId,
+            ref: "Review",
+        }],
     },
     {
         timestamps: true,

@@ -4,5 +4,6 @@ export type TShop = {
     name: string;
     logo?: string;
     description?: string;
-    vendorId: Types.ObjectId; // Reference to TUser (vendor)
+    vendorId: Types.ObjectId;
+    followers: number;
 };

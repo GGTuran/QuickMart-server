@@ -1,3 +1,4 @@
+import { Types } from "mongoose";
 import { USER_ROLE } from "./user.constants";
 
 export type TUser = {
@@ -7,6 +8,7 @@ export type TUser = {
   phone: string;
   address?: string;
   role: TUserRoles;
+  followingShops: Types.ObjectId[];
 };
 
 
