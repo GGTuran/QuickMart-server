@@ -3,6 +3,7 @@ import { authRoutes } from "../modules/auth/auth.routes";
 import { UserRoutes } from "../modules/user/user.routes";
 import { PaymentRoutes } from "../modules/payment/payment.route";
 import { productRoutes } from "../modules/product/product.routes";
+import { shopRoutes } from "../modules/shop/shop.routes";
 
 
 
@@ -20,6 +21,10 @@ const moduleRoutes = [
     {
         path: '/product',
         route: productRoutes,
+    },
+    {
+        path: '/shop',
+        route: shopRoutes,
     },
     {
         path: '/payment',
