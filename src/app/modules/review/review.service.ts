@@ -1,4 +1,4 @@
-import AppError from "../../errors/AppError";
+// import AppError from "../../errors/AppError";
 import { TReview } from "./review.interface"
 import { Review } from "./review.model"
 

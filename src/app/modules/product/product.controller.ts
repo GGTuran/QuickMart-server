@@ -3,8 +3,8 @@ import sendResponse from "../../utils/sendResponse";
 import { productServices } from "./product.service";
 
 const createProduct = catchAsync(async (req, res) => {
-    // console.log(req.body.data);
-    // console.log(req.file);
+    console.log(req.body.data);
+    console.log(req.file);
     const result = await productServices.createProductIntoDB({
         ...JSON.parse(req?.body?.data),
         image: req.file?.path,
@@ -61,6 +61,18 @@ const deleteProduct = catchAsync(async (req, res) => {
         data: result,
     });
 });
+
+
+// const duplicateProduct = catchAsync(async (req, res) => {
+//     const { id } = req.params;
+//     const result = await productServices.duplicateProductInDB(id);
+//     sendResponse(res, {
+//       success: true,
+//       statusCode: 201,
+//       message: "Product duplicated successfully",
+//       data: result,
+//     });
+//   });
 
 
 export const productControllers = {

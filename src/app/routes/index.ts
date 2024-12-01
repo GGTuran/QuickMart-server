@@ -5,6 +5,7 @@ import { PaymentRoutes } from "../modules/payment/payment.route";
 import { productRoutes } from "../modules/product/product.routes";
 import { shopRoutes } from "../modules/shop/shop.routes";
 import { reviewRoutes } from "../modules/review/review.routes";
+import { cartRoutes } from "../modules/cart/cart.routes";
 
 
 
@@ -30,6 +31,10 @@ const moduleRoutes = [
     {
         path: '/review',
         route: reviewRoutes,
+    },
+    {
+        path: '/cart',
+        route: cartRoutes,
     },
     {
         path: '/payment',

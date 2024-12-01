@@ -62,6 +62,22 @@ const deleteProductFromDB = async (id: string) => {
 };
 
 
+// const duplicateProductInDB = async (id: string) => {
+//     const product = await Product.findById(id);
+//     if (!product) {
+//       throw new AppError(404, "Product not found");
+//     }
+
+//     const duplicatedProduct = new Product({
+//       ...product.toObject(),
+//       _id: undefined, // Remove the existing `_id`
+//       name: `${product.name} (Copy)`,
+//     });
+
+//     const savedProduct = await duplicatedProduct.save();
+//     return savedProduct;
+//   };
+
 export const productServices = {
     createProductIntoDB,
     getAllProductsFromDB,
