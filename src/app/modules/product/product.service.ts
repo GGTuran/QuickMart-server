@@ -32,12 +32,24 @@ const getAllProductsFromDB = async (req: Request) => {
     // // Combine both category and search queries
     const query = { ...categoryQuery, ...searchQuery };
 
-    const result = await Product.find(query).populate('reviews').populate("shopId").populate("category");
+    const result = await Product.find(query).populate({
+        path: 'reviews',
+        populate: {
+            path: 'userId',
+            model: 'User',
+        },
+    }).populate("shopId").populate("category");
     return result;
 };
 
 const getProductById = async (id: string) => {
-    const result = await Product.findById(id).populate('reviews').populate("shopId").populate("category");
+    const result = await Product.findById(id).populate({
+        path: 'reviews',
+        populate: {
+            path: 'userId',
+            model: 'User',
+        },
+    }).populate("shopId").populate("category");
     return result;
 }
 
@@ -62,6 +74,17 @@ const deleteProductFromDB = async (id: string) => {
 };
 
 
+const getProductsByShopIdFromDB = async (shopId: string) => {
+    const result = await Product.find({ shopId }).populate({
+        path: 'reviews',
+        populate: {
+            path: 'userId',
+            model: 'User',
+        },
+    }).populate("shopId").populate("category");
+    return result;
+}
+
 // const duplicateProductInDB = async (id: string) => {
 //     const product = await Product.findById(id);
 //     if (!product) {
@@ -83,5 +106,71 @@ export const productServices = {
     getAllProductsFromDB,
     getProductById,
     updateProductInDB,
-    deleteProductFromDB
+    deleteProductFromDB,
+    getProductsByShopIdFromDB
 }
+
+
+
+
+
+// const getAllProductsFromDB = async (req: Request) => {
+//     const { category, searchTerm } = req.query;
+
+//     // Construct the category filter
+//     const categoryQuery = category && category !== 'all'
+//         ? { category: new Types.ObjectId(category as string) }
+//         : {};
+
+//     // Construct the search query using regex for partial matching
+//     const searchQuery = searchTerm
+//         ? {
+//             $or: [
+//                 { name: { $regex: searchTerm, $options: 'i' } },
+//                 // { content: { $regex: searchTerm, $options: 'i' } },
+//                 // { category: { $regex: searchTerm, $options: 'i' } },
+//             ],
+//         }
+//         : {};
+
+//     // Combine both category and search queries
+//     const query = { ...categoryQuery, ...searchQuery };
+
+//     // If user is logged in and has followed shops
+//     const userId = req?.user?.userId;
+//     let result;
+//     if (userId) {
+//         // Fetch the followed shops of the logged-in user
+//         const user = await User.findById(userId).select('followingShops');
+//         const followedShops = user?.followingShops || [];
+
+//         // First query for products from followed shops
+//         const followedShopProducts = await Product.find({
+//             ...query,
+//             shopId: { $in: followedShops }
+//         })
+//         .populate('reviews')
+//         .populate('shopId')
+//         .populate('category');
+
+//         // Then query for the rest of the products (not from followed shops)
+//         const otherProducts = await Product.find({
+//             ...query,
+//             shopId: { $nin: followedShops }
+//         })
+//         .populate('reviews')
+//         .populate('shopId')
+//         .populate('category');
+
+//         // Combine followed shop products and other products, putting followed shop products first
+//         result = [...followedShopProducts, ...otherProducts];
+//     } else {
+//         // If user is not logged in, just return products based on query filters
+//         result = await Product.find(query)
+//             .populate('reviews')
+//             .populate('shopId')
+//             .populate('category');
+//     }
+
+//     return result;
+// };

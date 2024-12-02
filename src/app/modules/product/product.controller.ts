@@ -62,6 +62,19 @@ const deleteProduct = catchAsync(async (req, res) => {
     });
 });
 
+const getProductsByShopId = catchAsync(async (req, res) => {
+    const { shopId } = req.params;
+    // console.log(id, 'from controller')
+    // console.log(req.params, 'from controller')
+    const result = await productServices.getProductsByShopIdFromDB(shopId);
+    sendResponse(res, {
+        success: true,
+        statusCode: 200,
+        message: "Products retrieved successfully",
+        data: result,
+    });
+});
+
 
 // const duplicateProduct = catchAsync(async (req, res) => {
 //     const { id } = req.params;
@@ -80,5 +93,6 @@ export const productControllers = {
     getAllProducts,
     getProduct,
     updateProduct,
-    deleteProduct
+    deleteProduct,
+    getProductsByShopId
 }

@@ -1,5 +1,5 @@
 import express from "express";
-import { orderControllers } from "./odrer.controller";
+import { orderControllers } from "./order.controller";
 
 
 

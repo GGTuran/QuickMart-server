@@ -18,7 +18,7 @@ const signUp = async (payload: TUser) => {
         name: result?.name,
         phone: result?.phone,
         address: result?.address,
-
+        followingShops: result?.followingShops,
     };
 
     const accessToken = jwt.sign(jwtPayload, config.JWT_ACCESS_SECRET as string, {
@@ -33,7 +33,7 @@ const signUp = async (payload: TUser) => {
         name: result?.name,
         phone: result?.phone,
         address: result?.address,
-
+        followingShops: result?.followingShops,
     };
 
     const refreshToken = jwt.sign(refreshPayload, config.JWT_REFRESH_SECRET as string, {
@@ -65,7 +65,7 @@ const loginUser = async (payload: TLoginUser) => {
         name: user?.name,
         phone: user?.phone,
         address: user?.address,
-
+        followingShops: user?.followingShops,
     };
 
     const accessToken = jwt.sign(jwtPayload, config.JWT_ACCESS_SECRET as string, {
@@ -80,7 +80,7 @@ const loginUser = async (payload: TLoginUser) => {
         name: user?.name,
         phone: user?.phone,
         address: user?.address,
-
+        followingShops: user?.followingShops,
     };
 
     const refreshToken = jwt.sign(refreshPayload, config.JWT_REFRESH_SECRET as string, {
@@ -92,6 +92,12 @@ const loginUser = async (payload: TLoginUser) => {
         refreshToken,
         user,
     }
+
+    // return {
+    //     token,
+    //     refreshToken,
+    //     user,
+    // }
 
 
 };
@@ -117,7 +123,7 @@ const refreshToken = async (token: string) => {
         name: user?.name,
         phone: user?.phone,
         address: user?.address,
-
+        followingShops: user?.followingShops,
     };
 
     const accessToken = jwt.sign(jwtPayload, config.JWT_ACCESS_SECRET as string, {
@@ -151,7 +157,7 @@ const forgetPassword = async (email: string) => {
         name: user?.name,
         phone: user?.phone,
         address: user?.address,
-
+        followingShops: user?.followingShops,
     };
 
     const resetToken = jwt.sign(jwtPayload, config.JWT_ACCESS_SECRET as string, {
