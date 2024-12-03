@@ -42,7 +42,7 @@ const getProduct = catchAsync(async (req, res) => {
 
 const updateProduct = catchAsync(async (req, res) => {
     const { id } = req.params;
-    const result = await productServices.updateProductInDB(id, req.body);
+    const result = await productServices.updateProductInDB(id, req);
     sendResponse(res, {
         success: true,
         statusCode: 200,

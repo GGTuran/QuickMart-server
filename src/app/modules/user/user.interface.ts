@@ -8,6 +8,7 @@ export type TUser = {
   phone: string;
   address?: string;
   role: TUserRoles;
+  image?: string;
   followingShops: Types.ObjectId[];
 };
 

@@ -8,22 +8,14 @@ const orderSchema = new Schema<TOrder>(
             ref: "User",
             required: true,
         },
-        productId: {
+        products: [{
             type: Schema.Types.ObjectId,
             ref: "Product",
             required: true,
-        },
+        }],
         shopId: {
             type: Schema.Types.ObjectId,
             ref: "Shop",
-            required: true,
-        },
-        quantity: {
-            type: Number,
-            required: true,
-        },
-        totalPrice: {
-            type: Number,
             required: true,
         },
         paymentStatus: {

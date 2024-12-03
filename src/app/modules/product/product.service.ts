@@ -53,8 +53,14 @@ const getProductById = async (id: string) => {
     return result;
 }
 
-const updateProductInDB = async (id: string, updateData: Partial<TProduct>) => {
-    const updatedProduct = await Product.findByIdAndUpdate(id, updateData, {
+const updateProductInDB = async (id: string, req: Request) => {
+
+    const updatedData = {
+        ...JSON.parse(req.body.data),  // Parse the form data
+        ...(req.file && { image: req.file.path })  // If an image file is uploaded, add the image path
+    };
+
+    const updatedProduct = await Product.findByIdAndUpdate(id, updatedData, {
         new: true,
     })
         // .populate("Shop")

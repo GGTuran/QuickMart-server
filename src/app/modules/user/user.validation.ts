@@ -8,7 +8,7 @@ const createUserZod = z.object({
     password: z.string({ required_error: 'Password is required' }),
     phone: z.string({ required_error: 'Phone Number is required' }),
     address: z.string({ required_error: 'Address is required' }),
-    role: z.nativeEnum(USER_ROLE),
+    role: z.nativeEnum(USER_ROLE).optional(),
     image: z.string().optional(),
     followers: z.string().array().optional(),
     following: z.string().array().optional(),
