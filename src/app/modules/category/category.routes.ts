@@ -1,10 +1,11 @@
 import express from "express";
 import { categoryControllers } from "./category.controller";
+import { multerUpload } from "../../config/multer.config";
 
 const router = express.Router();
 
 
-router.post("/", categoryControllers.createCategory);
+router.post("/", multerUpload.single("image"), categoryControllers.createCategory);
 
 
 router.get("/", categoryControllers.getAllCategories);
@@ -13,7 +14,7 @@ router.get("/", categoryControllers.getAllCategories);
 router.get("/:id", categoryControllers.getCategory);
 
 
-router.put("/:id", categoryControllers.updateCategory);
+router.patch("/:id", multerUpload.single("image"), categoryControllers.updateCategory);
 
 
 router.delete("/:id", categoryControllers.deleteCategory);

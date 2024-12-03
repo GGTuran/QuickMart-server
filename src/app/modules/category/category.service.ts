@@ -1,3 +1,4 @@
+import { Request } from "express";
 import AppError from "../../errors/AppError";
 import { TCategory } from "./category.interface";
 import { Category } from "./category.model";
@@ -25,8 +26,12 @@ const getCategoryById = async (id: string) => {
 };
 
 
-const updateCategoryInDB = async (id: string, updateData: Partial<TCategory>) => {
-    const updatedCategory = await Category.findByIdAndUpdate(id, updateData, {
+const updateCategoryInDB = async (id: string, req: Request) => {
+    const updatedData = {
+        ...JSON.parse(req.body.data),  // Parse the form data
+        ...(req.file && { image: req.file.path })  // If an image file is uploaded, add the image path
+    };
+    const updatedCategory = await Category.findByIdAndUpdate(id, updatedData, {
         new: true,
     });
     if (!updatedCategory) {

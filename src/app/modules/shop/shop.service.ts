@@ -12,26 +12,32 @@ const createShopIntoDB = async (payload: TShop) => {
 }
 
 const getAllShopsFromDB = async () => {
-    const result = await Shop.find();
+    const result = await Shop.find().populate("vendorId");
     return result;
 }
 
 const getSingleShopFromDB = async (id: string) => {
-    const result = await Shop.findById(id);
+    const result = await Shop.findById(id).populate("vendorId");
     if (!result) {
         throw new AppError(404, "Shop not found");
     };
     return result;
 };
 
-const updateShopIntoDB = async (id: string, updateData: Partial<TShop>) => {
+const updateShopIntoDB = async (id: string, req: Request) => {
+
+    const updateData = {
+        ...JSON.parse(req?.body?.data),
+        logo: req.file?.path,
+    }
+
     const updatedShop = await Shop.findByIdAndUpdate(id, updateData, {
         new: true,
     })
         // .populate("Shop")
         ;
     if (!updatedShop) {
-        throw new AppError(404, "Post not found");
+        throw new AppError(404, "Shop not found");
     }
     return updatedShop;
 };

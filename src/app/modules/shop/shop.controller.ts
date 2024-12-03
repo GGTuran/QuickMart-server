@@ -41,11 +41,11 @@ const getSingleShop = catchAsync(async (req, res) => {
 
 const updateShop = catchAsync(async (req, res) => {
     const { id } = req.params;
-    const result = await shopServices.updateShopIntoDB(id, req.body);
+    const result = await shopServices.updateShopIntoDB(id, req);
     sendResponse(res, {
         success: true,
         statusCode: 200,
-        message: "Shop retrieved successfully",
+        message: "Shop updated successfully",
         data: result,
     });
 });
