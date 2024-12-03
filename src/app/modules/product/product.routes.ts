@@ -22,7 +22,7 @@ router.get("/:id", productControllers.getProduct)
 router.patch(
     "/:id",
     //  auth(USER_ROLE.admin),
-    // multerUpload.single('image'),
+    multerUpload.single('image'),
     productControllers.updateProduct);
 router.delete(
     "/:id",

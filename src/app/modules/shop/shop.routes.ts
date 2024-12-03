@@ -38,7 +38,9 @@ router.post(
 router.post(
     "/unfollow",
     auth(USER_ROLE.vendor, USER_ROLE.admin, USER_ROLE.customer),
-    shopControllers.unFollowShop)
+    shopControllers.unFollowShop);
+
+router.get("/vendor/:vendorId", shopControllers.getShopByVendorId)
 
 
 export const shopRoutes = router;

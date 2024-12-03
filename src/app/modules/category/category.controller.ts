@@ -3,10 +3,7 @@ import sendResponse from "../../utils/sendResponse";
 import { categoryServices } from "./category.service";
 
 const createCategory = catchAsync(async (req, res) => {
-    // console.log({
-    //     ...JSON.parse(req?.body?.data),
-    //     image: req?.file?.path
-    // })
+
     const result = await categoryServices.createCategoryIntoDB({
         ...JSON.parse(req?.body?.data),
         image: req?.file?.path,

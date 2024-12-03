@@ -91,6 +91,20 @@ const unFollowShop = catchAsync(async (req, res) => {
 });
 
 
+
+const getShopByVendorId = catchAsync(async (req, res) => {
+    const { vendorId } = req.params;
+    console.log(vendorId, 'from controller')
+    const result = await shopServices.getShopByVendorIdFromDB(vendorId);
+    sendResponse(res, {
+        success: true,
+        statusCode: 200,
+        message: "Shop retrieved successfully",
+        data: result,
+    });
+});
+
+
 export const shopControllers = {
     createShop,
     getAllShops,
@@ -98,5 +112,6 @@ export const shopControllers = {
     updateShop,
     deleteShop,
     followShop,
-    unFollowShop
+    unFollowShop,
+    getShopByVendorId,
 }

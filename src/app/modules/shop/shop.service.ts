@@ -100,6 +100,13 @@ const unFollowShopFromDB = async (req: Request) => {
 };
 
 
+const getShopByVendorIdFromDB = async (vendorId: string) => {
+    console.log(vendorId, 'from service')
+    const result = await Shop.findOne({ vendorId }).populate("vendorId");
+    return result;
+}
+
+
 export const shopServices = {
     createShopIntoDB,
     getAllShopsFromDB,
@@ -107,5 +114,6 @@ export const shopServices = {
     updateShopIntoDB,
     deleteShopFromDb,
     followShopFromDB,
-    unFollowShopFromDB
+    unFollowShopFromDB,
+    getShopByVendorIdFromDB,
 }

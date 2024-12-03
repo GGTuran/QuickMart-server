@@ -39,6 +39,11 @@ const getSingleReviewFromDB = async (id: string) => {
     return result;
 };
 
+const getReviewByProductId = async (productId: string) => {
+    const result = await Review.findOne({ productId }).populate("userId").populate("productId");
+    return result;
+}
+
 const updateReviewIntoDB = async (id: string, updatedReview: Partial<TReview>) => {
     // const review = await Review.findById(id);
     // if (!review) {
@@ -59,6 +64,7 @@ export const reviewServices = {
     createReviewFromDB,
     getAllReviewFromDB,
     getSingleReviewFromDB,
+    getReviewByProductId,
     updateReviewIntoDB,
     deleteReviewFromDB
 }

@@ -16,7 +16,9 @@ router.post(
 
 router.get("/", reviewControllers.getAllReviews);
 
-router.get("/:id", reviewControllers.getSingleReview)
+router.get("/:id", reviewControllers.getSingleReview);
+
+router.get("/product/:productId", reviewControllers.getReviewByProductId);
 
 router.patch(
     "/:id",
