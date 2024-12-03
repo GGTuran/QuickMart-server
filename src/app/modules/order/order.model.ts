@@ -21,7 +21,7 @@ const orderSchema = new Schema<TOrder>(
         paymentStatus: {
             type: String,
             enum: ["pending", "paid"],
-            default: "pending",
+            default: "paid",
         },
         orderDate: {
             type: Date,

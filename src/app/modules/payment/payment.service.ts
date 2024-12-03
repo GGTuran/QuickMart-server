@@ -4,6 +4,7 @@ import { join } from "path";
 import { verifyPayment } from "./payment.utils";
 import { readFileSync } from "fs";
 import { User } from "../user/user.model";
+import { Order } from "../order/order.model";
 
 
 const PaymentIntoDB = async (transactionId: string, userId: string) => {
@@ -14,13 +15,14 @@ const PaymentIntoDB = async (transactionId: string, userId: string) => {
 
     let result;
 
+    // await Order.find({ userId })
 
 
-
-    // console.log(verifyResponse.amount,'amount')
+    // console.log(verifyResponse, 'amount')
 
     if (verifyResponse && verifyResponse.pay_status === 'Successful') {
-        result = await User.findByIdAndUpdate(userId, { isPaid: true }, { new: true })
+        result = await Order.findOneAndUpdate({ userId }, { paymentStatus: "paid" }, { new: true })
+        //  await User.findByIdAndUpdate(userId, { isPaid: true }, { new: true })
         message = "Successfully Paid!"
 
     }
