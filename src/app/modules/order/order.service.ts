@@ -43,6 +43,11 @@ const createOrderIntoDB = async (payload: TOrder) => {
 }
 
 
+const getAllOrdersFromDB = async () => {
+    const result = await Order.find().populate("products").populate("userId").populate("shopId");
+    return result;
+}
+
 const getOrdersByUserId = async (userId: string) => {
     const result = await Order.find({ userId }).populate("products").populate("userId").populate("shopId");
     return result;
@@ -50,13 +55,14 @@ const getOrdersByUserId = async (userId: string) => {
 
 
 const getOrdersByShopId = async (shopId: string) => {
-    const orders = await Order.find({ shopId }).populate("products").populate("userId");
+    const orders = await Order.find({ shopId }).populate("products").populate("userId").populate("shopId");
     return orders;
 };
 
 
 export const orderServices = {
     createOrderIntoDB,
+    getAllOrdersFromDB,
     getOrdersByUserId,
     getOrdersByShopId,
 }

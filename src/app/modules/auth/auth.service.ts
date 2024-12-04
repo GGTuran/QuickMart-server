@@ -187,7 +187,7 @@ const resetPassword = async (payload: { id: string, password: string }, token: s
 
     await User.findByIdAndUpdate(id
         , {
-            password: newPassword,
+            password: payload.password,
         }
     )
 

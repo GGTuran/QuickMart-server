@@ -30,7 +30,9 @@ router.delete(
     productControllers.deleteProduct);
 
 
-router.get("/shop/:shopId", productControllers.getProductsByShopId)
+router.get("/shop/:shopId", productControllers.getProductsByShopId);
+
+router.get("/low/Price", productControllers.getDiscountedProduct);
 
 
 export const productRoutes = router;

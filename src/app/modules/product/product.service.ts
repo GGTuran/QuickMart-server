@@ -29,6 +29,8 @@ const getAllProductsFromDB = async (req: Request) => {
         }
         : {};
 
+
+
     // // Combine both category and search queries
     const query = { ...categoryQuery, ...searchQuery };
 
@@ -38,7 +40,8 @@ const getAllProductsFromDB = async (req: Request) => {
             path: 'userId',
             model: 'User',
         },
-    }).populate("shopId").populate("category");
+    }).populate("shopId").populate("category")
+        .sort({ createdAt: -1 });
     return result;
 };
 
@@ -91,6 +94,23 @@ const getProductsByShopIdFromDB = async (shopId: string) => {
     return result;
 }
 
+
+const getAllProductsWithDiscount = async () => {
+    const result = await Product.find({ discount: { $gte: 30 } })
+        .sort({ discount: -1 }) // Sort by discount in descending order
+        .populate({
+            path: 'reviews',
+            populate: {
+                path: 'userId',
+                model: 'User',
+            },
+        })
+        .populate("shopId")
+        .populate("category");
+
+    return result;
+};
+
 // const duplicateProductInDB = async (id: string) => {
 //     const product = await Product.findById(id);
 //     if (!product) {
@@ -113,7 +133,8 @@ export const productServices = {
     getProductById,
     updateProductInDB,
     deleteProductFromDB,
-    getProductsByShopIdFromDB
+    getProductsByShopIdFromDB,
+    getAllProductsWithDiscount,
 }
 
 

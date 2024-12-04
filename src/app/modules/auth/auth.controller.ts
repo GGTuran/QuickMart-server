@@ -8,12 +8,12 @@ import { authServices } from "./auth.service";
 const signUp = catchAsync(async (req, res) => {
     const { accessToken, result: user } = await authServices.signUp(req.body);
     // const result = await authServices.signUp(req.body);
-    // res.cookie('refreshToken', refreshToken, {
-    //     secure: config.NODE_ENV === 'production',
-    //     httpOnly: true,
-    //     sameSite: 'none',
-    //     maxAge: 1000 * 60 * 60 * 24 * 365,
-    // });
+    res.cookie('refreshToken', refreshToken, {
+        secure: config.NODE_ENV === 'production',
+        httpOnly: true,
+        sameSite: 'none',
+        maxAge: 1000 * 60 * 60 * 24 * 365,
+    });
     sendResponse(res, {
         success: true,
         statusCode: 201,

@@ -9,6 +9,10 @@ import AppError from "../errors/AppError";
 
 
 const globalErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
+    // if (res.headersSent) {
+    //     // If headers are already sent, delegate to the default Express error handler
+    //     return next(err);
+    // }
     let statusCode = 500;
     let message = "Something went wrong!";
     let errorMessages: TErrorMessages = [

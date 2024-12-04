@@ -40,7 +40,7 @@ const getSingleReviewFromDB = async (id: string) => {
 };
 
 const getReviewByProductId = async (productId: string) => {
-    const result = await Review.findOne({ productId }).populate("userId").populate("productId");
+    const result = await Review.find({ productId }).populate("userId").populate("productId");
     return result;
 }
 

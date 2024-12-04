@@ -76,6 +76,17 @@ const getProductsByShopId = catchAsync(async (req, res) => {
 });
 
 
+const getDiscountedProduct = catchAsync(async (req, res) => {
+    const result = await productServices.getAllProductsWithDiscount();
+    sendResponse(res, {
+        success: true,
+        statusCode: 200,
+        message: "Products retrieved successfully",
+        data: result,
+    });
+});
+
+
 // const duplicateProduct = catchAsync(async (req, res) => {
 //     const { id } = req.params;
 //     const result = await productServices.duplicateProductInDB(id);
@@ -94,5 +105,6 @@ export const productControllers = {
     getProduct,
     updateProduct,
     deleteProduct,
-    getProductsByShopId
+    getProductsByShopId,
+    getDiscountedProduct
 }

@@ -63,9 +63,9 @@ const deleteShop = catchAsync(async (req, res) => {
 })
 
 const followShop = catchAsync(async (req, res) => {
-    const userId = req.user.userId;
-    const { shopId } = req.body;
-    console.log(shopId, userId, 'from controller')
+    // const userId = req.user.userId;
+    // const { shopId } = req.body;
+    // console.log(shopId, userId, 'from controller')
     const result = await shopServices.followShopFromDB(req);
     sendResponse(res, {
         success: true,
@@ -77,9 +77,9 @@ const followShop = catchAsync(async (req, res) => {
 });
 
 const unFollowShop = catchAsync(async (req, res) => {
-    const userId = req.user.userId;
-    const { shopId } = req.body;
-    console.log(shopId, userId, 'from controller')
+    // const userId = req.user.userId;
+    // const { shopId } = req.body;
+    // console.log(shopId, userId, 'from controller')
     const result = await shopServices.unFollowShopFromDB(req);
     sendResponse(res, {
         success: true,
@@ -94,7 +94,7 @@ const unFollowShop = catchAsync(async (req, res) => {
 
 const getShopByVendorId = catchAsync(async (req, res) => {
     const { vendorId } = req.params;
-    console.log(vendorId, 'from controller')
+    // console.log(vendorId, 'from controller')
     const result = await shopServices.getShopByVendorIdFromDB(vendorId);
     sendResponse(res, {
         success: true,

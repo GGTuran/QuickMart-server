@@ -14,7 +14,7 @@ router.get(
 
 router.patch(
     '/me',
-    // auth(USER_ROLE.admin, USER_ROLE.user),
+    auth(USER_ROLE.admin, USER_ROLE.customer, USER_ROLE.vendor),
     multerUpload.single('image'),
     UserControllers.updateProfile
 );

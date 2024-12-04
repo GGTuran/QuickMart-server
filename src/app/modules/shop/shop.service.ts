@@ -101,7 +101,7 @@ const unFollowShopFromDB = async (req: Request) => {
 
 
 const getShopByVendorIdFromDB = async (vendorId: string) => {
-    console.log(vendorId, 'from service')
+    // console.log(vendorId, 'from service')
     const result = await Shop.findOne({ vendorId }).populate("vendorId");
     return result;
 }

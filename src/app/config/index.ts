@@ -1,24 +1,10 @@
 import dotenv from "dotenv";
 import path from "path";
-import { z } from 'zod'
+
 
 dotenv.config({ path: path.join(process.cwd(), ".env") });
 
-const envSchema = z.object({
-  port: z.coerce.number(),
-  database_url: z.string(),
-})
 
-
-
-export const checkEnv = () => {
-  const response = envSchema.safeParse(process.env)
-  if (response.error) {
-    throw new Error("Environment file missing.")
-  }
-}
-
-export const envConfig = envSchema.parse(process.env)
 
 export default {
   port: process.env.PORT,
