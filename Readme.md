@@ -1,15 +1,16 @@
-<!-- # Pet Care Service Backend
+# QuickMart Backend
 
-## Pawprints & Tales provides a comprehensive backend server to manage and rent pets, ensuring a seamless experience for pet owners and enthusiasts. This system allows users to rent pets for a period, with flexible return options and secure payments, making it ideal for fostering or short-term pet care needs. It’s especially beneficial for those who love animals but cannot commit long-term.The server offers exciting features such as robust authentication and authorization to secure user data, admin-controlled pet management to ensure proper care and availability, and a streamlined rental process. This system is designed to provide peace of mind for both users and pet managers while fostering deeper connections with animals.
+## QuickMart is a feature-rich e-commerce platform designed to deliver a seamless online shopping experience for users, vendors, and administrators. It provides a dynamic and intuitive environment where users can effortlessly browse and purchase products, vendors can efficiently manage their shops and inventories, and administrators can maintain full control of the platform. With robust authentication and secure payment integrations, QuickMart ensures a reliable and secure shopping journey. The application’s highlights include advanced product filtering, responsive design, and scalable features such as paginated product listings and order histories. By combining modern technologies like Node.js, Express.js, and MongoDB, QuickMart is built to be scalable, user-friendly, and enterprise-ready, catering to the needs of a growing digital marketplace.
 
 ## Live URL
 
-[Live link](https://pet-care-server-eight.vercel.app/)
+[Live link](https://mart-server.vercel.app)
 
 ## Features
 
 - **User Authentication**: Users can sign up, log in.
-- **News Feed Management**: Only an admin and user will be able to create posts and also can update those.Everyone can see all the posts.
+- **Shop Management**: Vendors can create and personalize their shops with details such as name, logo, and description. They can also manage product inventory, add or edit product details, and respond to customer reviews.
+- **Admin Controls**: Administrators can monitor activities, manage users and vendors, and dynamically add, edit, or delete product categories.
 - **Payment Management**: An user can pay for premium posts allowing them to see all premium posts.
 
 Technology Stack:
@@ -27,8 +28,12 @@ API Endpoints:
 
 - /api/auth
 - /api/users
-- /api/post
-- /api/comment
+- /api/product
+- /api/shop
+- /api/review
+- /api/category
+- /api/order
+- /api/payment
 
 ### Prerequisites
 
@@ -40,8 +45,7 @@ API Endpoints:
 **Follow this simple step to clone the project:**
 
 ```bash
-git clone  https://github.com/GGTuran/pet-care-server
-cd pet-care-server
+git clone  https://github.com/GGTuran/QuickMart-server.git
 ```
 
 **Now install the dependencies of the project:**
@@ -89,4 +93,4 @@ npm run start:dev
 
 ```
 npm run start:prod
-``` -->
+```
